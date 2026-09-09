@@ -1,4 +1,5 @@
 import torch
+
 from copy_lab.experiment import make_inputs, region_losses
 
 
@@ -12,6 +13,6 @@ def test_matched_targets_and_reproducibility():
 
 def test_loss_alignment_excludes_both_boundary_targets():
     # For BOS a b c a b c, loss indices 1,2 and 4,5 predict b,c.
-    first, second = region_losses(torch.tensor([[999., 2., 4., 999., 6., 8.]]), 3)
+    first, second = region_losses(torch.tensor([[999.0, 2.0, 4.0, 999.0, 6.0, 8.0]]), 3)
     assert first.item() == 3
     assert second.item() == 7

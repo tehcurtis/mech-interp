@@ -3,13 +3,17 @@ name = "how-transformers-copy"
 version = "0.1.0"
 description = "Reproducible experiments on sequence copying in an attention-only transformer"
 requires-python = ">=3.11,<3.13"
-dependencies = ["transformer-lens>=2,<3", "matplotlib", "jupyterlab"]
+dependencies = ["transformer-lens>=2,<3", "torch", "matplotlib"]
 
 [dependency-groups]
 dev = [
     "pytest",
     "ruff>=0.16.6",
 ]
+notebook = ["jupyterlab"]
+
+[tool.uv]
+default-groups = ["dev", "notebook"]
 
 [tool.pytest.ini_options]
 pythonpath = ["src"]

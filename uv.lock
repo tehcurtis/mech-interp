@@ -739,8 +739,8 @@ name = "how-transformers-copy"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
-    { name = "jupyterlab" },
     { name = "matplotlib" },
+    { name = "torch" },
     { name = "transformer-lens" },
 ]
 
@@ -749,11 +749,14 @@ dev = [
     { name = "pytest" },
     { name = "ruff" },
 ]
+notebook = [
+    { name = "jupyterlab" },
+]
 
 [package.metadata]
 requires-dist = [
-    { name = "jupyterlab" },
     { name = "matplotlib" },
+    { name = "torch" },
     { name = "transformer-lens", specifier = ">=2,<3" },
 ]
 
@@ -762,6 +765,7 @@ dev = [
     { name = "pytest" },
     { name = "ruff", specifier = ">=0.16.6" },
 ]
+notebook = [{ name = "jupyterlab" }]
 
 [[package]]
 name = "httpcore"

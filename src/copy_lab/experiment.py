@@ -2,12 +2,11 @@
 
 import argparse
 import json
-import os
 from pathlib import Path
 
 import torch
 
-ROOT = Path(__file__).resolve().parents[2]
+from copy_lab.common import ROOT, load_model, per_token_losses
 
 
 def make_inputs(pool, bos, length=32, samples=16, seed=42):
@@ -69,35 +68,14 @@ def run(
     if length < 2 or samples < 1:
         raise ValueError("Need length >= 2 and samples >= 1")
 
-    os.environ.setdefault("HF_HOME", str(ROOT / ".cache/huggingface"))
-    os.environ.setdefault("MPLCONFIGDIR", str(ROOT / ".cache/matplotlib"))
+    net, pool, bos = load_model(model, device, min_ctx=1 + 2 * length)
     import matplotlib.pyplot as plt
-    from transformer_lens import HookedTransformer
 
-    net = HookedTransformer.from_pretrained(model, device=device)
-    net.eval()
-    if 1 + 2 * length > net.cfg.n_ctx:
-        raise ValueError("Sequence exceeds the model's context window")
-    if net.tokenizer is None:
-        raise ValueError("This experiment requires a model with a tokenizer")
-    bos = net.tokenizer.bos_token_id
-    if bos is None:
-        raise ValueError("This experiment requires a BOS token")
-    special = set(net.tokenizer.all_special_ids) | {bos}
-    pool = torch.tensor([i for i in range(net.cfg.d_vocab) if i not in special])
     repeated, control = make_inputs(pool, bos, length, samples, seed)
 
     # Process one sequence at a time to bound memory from full-vocabulary logits.
-    def evaluate(tokens):
-        with torch.inference_mode():
-            return torch.cat(
-                [
-                    net(row[None].to(device), return_type="loss", loss_per_token=True).cpu()
-                    for row in tokens
-                ]
-            )
-
-    repeated_loss, control_loss = evaluate(repeated), evaluate(control)
+    repeated_loss = per_token_losses(net, repeated, device)
+    control_loss = per_token_losses(net, control, device)
     summary = {
         "model": model,
         "device": device,

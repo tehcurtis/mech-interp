@@ -23,6 +23,28 @@ For `attn-only-2l`, with 32 tokens per block, 16 sequence pairs, and seed 42:
 
 These results establish a behavioral effect under the sampled input distribution. They do not identify an induction circuit. Random token inputs are artificial and allow accidental matches. The standard error does not capture variation across seeds, models, or training runs.
 
+## Induction heads and ablations
+
+Every attention head is scored for **induction attention** (mean attention from a scored second-block query to the key holding the token it should copy) and **previous-token attention** (mean attention to the immediately preceding key), then the top induction heads are zero-ablated on `hook_z` and the paired copying benefit is recomputed. Zero-ablation forces the head's output to zero at every position; this is off-distribution for the model, so effect sizes should be read as evidence of contribution, not as precise causal estimates. A random, disjoint set of control heads with the same per-layer counts is ablated the same way to check that the effect isn't just "removing any two heads hurts"; the control heads are not screened, only recorded with their own scores.
+
+For `attn-only-2l`, with the same 32-token blocks, 16 sequence pairs, and seed 42, ablating the top 2 induction heads:
+
+| Head | Induction score | Previous-token score |
+| --- | ---: | ---: |
+| Layer 1, head 6 | 0.65 | 0.00 |
+| Layer 1, head 7 | 0.05 | 0.01 |
+| Layer 0, head 3 (highest previous-token score) | 0.01 | 0.51 |
+
+| Condition | Paired copying benefit (nats) | Standard error |
+| --- | ---: | ---: |
+| Baseline (no ablation) | 11.34 | 0.19 |
+| Top-2 induction heads ablated | 0.13 | 0.07 |
+| 2 random control heads ablated (layer 1, heads 0 and 3) | 12.29 | 0.19 |
+
+Both the repeated-context and control-context losses are measured under the same ablated model. Ablating the top two induction heads nearly eliminates the copying benefit (11.34 to 0.13 nats), while ablating two random control heads leaves it at or above baseline. This supports layer-1 heads 6 and 7 as the primary contributors to the behavioral copying effect measured above, with layer-0 head 3 acting as a previous-token head rather than an induction head.
+
+![Induction heads](results/heads/heads.png)
+
 ## Reproduction
 
 Requires Python 3.11 or 3.12 and [uv](https://docs.astral.sh/uv/). Dependencies are recorded in `uv.lock`.
@@ -30,6 +52,7 @@ Requires Python 3.11 or 3.12 and [uv](https://docs.astral.sh/uv/). Dependencies 
 ```sh
 UV_CACHE_DIR=.cache/uv uv sync --locked
 PYTHONPATH=src uv run python -m copy_lab.experiment
+PYTHONPATH=src uv run python -m copy_lab.heads
 uv run jupyter lab notebooks/01_observe_copying.ipynb
 uv run pytest
 ```
@@ -58,7 +81,7 @@ The test suite uses a fake model and does not download weights. Notebooks are ex
 
 ## Scope and planned experiments
 
-The behavioral baseline is implemented. Planned extensions include replication across seeds and sequence lengths, attention-pattern inspection, head ablations with control heads, and sensitivity to distractors and token substitutions.
+The behavioral baseline, attention-pattern inspection, and head ablations with control heads are implemented. Planned extensions include replication across seeds and sequence lengths, and sensitivity to distractors and token substitutions.
 
 ## References
 

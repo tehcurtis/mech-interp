@@ -1,0 +1,72 @@
+# How Transformers Copy
+
+Reproducible experiments on sequence copying in a pretrained attention-only transformer. The current implementation measures the effect of repeated context on next-token prediction using matched target sequences.
+
+## Method
+
+Compare `BOS A A` with `BOS B A`, where A and B are independently sampled, uniformly distributed sequences of nonspecial token IDs. The second block has identical targets at identical absolute positions in both conditions. Exclude the first token in each block because it has no within-block prefix available for matching.
+
+The primary metric is control-minus-repeated prediction loss, averaged over scored positions and then over sequence pairs. Positive values indicate a copying benefit. Loss is measured in nats.
+
+## Baseline results
+
+For `attn-only-2l`, with 32 tokens per block, 16 sequence pairs, and seed 42:
+
+| Metric | Nats |
+| --- | ---: |
+| Repeated-context second-block loss | 3.33 |
+| Control second-block loss | 14.67 |
+| Paired copying benefit | 11.34 |
+| Standard error across sequence pairs | 0.19 |
+
+![Copying baseline](results/copying.png)
+
+These results establish a behavioral effect under the sampled input distribution. They do not identify an induction circuit. Random token inputs are artificial and allow accidental matches. The standard error does not capture variation across seeds, models, or training runs.
+
+## Reproduction
+
+Requires Python 3.11 or 3.12 and [uv](https://docs.astral.sh/uv/). Dependencies are recorded in `uv.lock`.
+
+```sh
+UV_CACHE_DIR=.cache/uv uv sync --locked
+PYTHONPATH=src uv run python -m copy_lab.experiment
+uv run jupyter lab notebooks/01_observe_copying.ipynb
+uv run pytest
+```
+
+The initial run downloads pretrained weights and a tokenizer from Hugging Face. Caches stay in `.cache/`. CPU execution is verified; `--device mps` requests Apple GPU execution and has not been validated for this experiment.
+
+Outputs are `results/summary.json`, `results/data.pt`, and `results/copying.png`. The committed files are the seed-42 baseline; pass `--output` to write a different configuration elsewhere rather than overwriting them.
+
+```sh
+PYTHONPATH=src uv run python -m copy_lab.experiment --seed 123 --samples 32 --output runs/seed123
+```
+
+`--model` accepts any TransformerLens pretrained name with a BOS token; the sequence must fit the model's context window.
+
+## Development
+
+Tests and lint run with:
+
+```sh
+uv run pytest
+uv run ruff check .
+uv run ruff format --check .
+```
+
+The test suite uses a fake model and does not download weights. Notebooks are excluded from ruff. `uv sync --no-default-groups` gives a minimal install without JupyterLab.
+
+## Scope and planned experiments
+
+The behavioral baseline is implemented. Planned extensions include replication across seeds and sequence lengths, attention-pattern inspection, head ablations with control heads, and sensitivity to distractors and token substitutions.
+
+## References
+
+This project reproduces an established repeated-sequence evaluation using an existing pretrained model.
+
+- [TransformerLens main demo](https://transformerlensorg.github.io/TransformerLens/generated/demos/Main_Demo.html): model loading and induction analysis.
+- [ARENA transformer interpretability](https://learn.arena.education/chapter1_transformer_interp/02_intro_mech_interp/): induction circuits and experimental methods.
+
+## License
+
+Project code and notebooks are licensed under the [MIT License](LICENSE). Model weights and dependencies retain their own licenses.

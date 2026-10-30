@@ -4,6 +4,7 @@ __pycache__/
 .pytest_cache/
 .ipynb_checkpoints/
 .DS_Store
+runs/
 
 # Local credentials and environment configuration
 .env

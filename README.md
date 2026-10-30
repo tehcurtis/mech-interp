@@ -45,6 +45,23 @@ Both the repeated-context and control-context losses are measured under the same
 
 ![Induction heads](results/heads/heads.png)
 
+## Replication across seeds and lengths
+
+The single-run results above use one seed (42) and one block length (32). To check that they are not artifacts of that choice, the induction-head identification and ablation are repeated over block lengths 8, 16, 32, and 64 and seeds 0 to 4, with 16 sequence pairs per cell and the top 2 induction heads ablated. The top heads and the random control heads are re-identified in every cell, so the last column records how many seeds agreed on the highest-scoring head.
+
+Paired copying benefit in nats, `mean ± std` over 5 seeds:
+
+| Length | Baseline | Top-2 induction ablated | 2 control heads ablated | Top-1 head (seeds agreeing) |
+| ---: | ---: | ---: | ---: | --- |
+| 8 | 11.13 ± 0.27 | 0.76 ± 0.22 | 11.21 ± 0.39 | L1H6 (5/5) |
+| 16 | 10.97 ± 0.23 | 0.44 ± 0.08 | 11.23 ± 0.37 | L1H6 (5/5) |
+| 32 | 10.85 ± 0.08 | 0.18 ± 0.06 | 11.15 ± 0.37 | L1H6 (5/5) |
+| 64 | 10.41 ± 0.16 | 0.08 ± 0.04 | 10.71 ± 0.37 | L1H6 (5/5) |
+
+![Seed and length sweep](results/sweep/sweep.png)
+
+The standard deviation here is taken across seeds (ddof=1) and includes variation in the sampled tokens and in which control heads are drawn. It is not comparable to the per-pair standard errors in the earlier tables, which describe variation across sequence pairs within one seed. Seeds do not vary the trained model, and five seeds give only a coarse estimate of the spread.
+
 ## Reproduction
 
 Requires Python 3.11 or 3.12 and [uv](https://docs.astral.sh/uv/). Dependencies are recorded in `uv.lock`.
@@ -53,6 +70,7 @@ Requires Python 3.11 or 3.12 and [uv](https://docs.astral.sh/uv/). Dependencies 
 UV_CACHE_DIR=.cache/uv uv sync --locked
 PYTHONPATH=src uv run python -m copy_lab.experiment
 PYTHONPATH=src uv run python -m copy_lab.heads
+PYTHONPATH=src uv run python -m copy_lab.sweep
 uv run jupyter lab notebooks/01_observe_copying.ipynb
 uv run pytest
 ```
@@ -81,7 +99,7 @@ The test suite uses a fake model and does not download weights. Notebooks are ex
 
 ## Scope and planned experiments
 
-The behavioral baseline, attention-pattern inspection, and head ablations with control heads are implemented. Planned extensions include replication across seeds and sequence lengths, and sensitivity to distractors and token substitutions.
+The behavioral baseline, attention-pattern inspection, head ablations with control heads, and replication across seeds and sequence lengths are implemented. Planned extensions include sensitivity to distractors and token substitutions.
 
 ## References
 

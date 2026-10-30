@@ -12,6 +12,7 @@ from copy_lab.common import ROOT, load_model, per_token_losses
 from copy_lab.experiment import block_slices, make_inputs, summarize
 
 PREVIOUS_OFFSET = -1
+CONDITIONS = ("baseline", "induction_ablated", "control_ablated")
 
 
 def induction_offset(length):
@@ -112,6 +113,39 @@ def score_heads(net, tokens, length, device="cpu"):
     return torch.cat(losses), torch.stack(induction), torch.stack(previous)
 
 
+def head_records(heads, induction, previous):
+    """JSON-ready {layer, head, induction_score, previous_token_score} per (layer, head)."""
+    return [
+        {
+            "layer": layer,
+            "head": head,
+            "induction_score": induction[layer, head].item(),
+            "previous_token_score": previous[layer, head].item(),
+        }
+        for layer, head in heads
+    ]
+
+
+def ablation_conditions(net, repeated, control, device, top, ctrl, baseline):
+    """{condition: (repeated_loss, control_loss, ablated_heads)} for CONDITIONS.
+
+    `baseline` is the precomputed unablated (repeated_loss, control_loss) pair.
+    """
+    return {
+        "baseline": (*baseline, []),
+        "induction_ablated": (
+            per_token_losses(net, repeated, device, ablation_hooks(top)),
+            per_token_losses(net, control, device, ablation_hooks(top)),
+            top,
+        ),
+        "control_ablated": (
+            per_token_losses(net, repeated, device, ablation_hooks(ctrl)),
+            per_token_losses(net, control, device, ablation_hooks(ctrl)),
+            ctrl,
+        ),
+    }
+
+
 def run(
     length=32,
     samples=16,
@@ -141,37 +175,16 @@ def run(
     top = ranked[:top_k]
     ctrl = select_control_heads(top, net.cfg.n_heads, seed)
 
-    def scores_for(heads):
-        return [
-            {
-                "layer": layer,
-                "head": head,
-                "induction_score": induction[layer, head].item(),
-                "previous_token_score": previous[layer, head].item(),
-            }
-            for layer, head in heads
-        ]
-
-    conditions = {
-        "baseline": (repeated_loss, control_loss, []),
-        "induction_ablated": (
-            per_token_losses(net, repeated, device, ablation_hooks(top)),
-            per_token_losses(net, control, device, ablation_hooks(top)),
-            top,
-        ),
-        "control_ablated": (
-            per_token_losses(net, repeated, device, ablation_hooks(ctrl)),
-            per_token_losses(net, control, device, ablation_hooks(ctrl)),
-            ctrl,
-        ),
-    }
+    conditions = ablation_conditions(
+        net, repeated, control, device, top, ctrl, (repeated_loss, control_loss)
+    )
     ablations = {}
     condition_losses = {}
     for name, (rep_loss, ctl_loss, heads) in conditions.items():
         condition_losses[name] = (rep_loss, ctl_loss)
         ablations[name] = {
             **summarize(rep_loss, ctl_loss, length),
-            "heads": scores_for(heads),
+            "heads": head_records(heads, induction, previous),
         }
 
     summary = {
@@ -189,7 +202,7 @@ def run(
         "induction_score_standard_error": (
             (ind_seq.std(0) / samples**0.5).tolist() if samples > 1 else None
         ),
-        "ranked_heads": scores_for(ranked),
+        "ranked_heads": head_records(ranked, induction, previous),
         "ablations": ablations,
         "torch_version": torch.__version__,
     }

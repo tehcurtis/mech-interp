@@ -1,7 +1,3 @@
-import matplotlib
-
-matplotlib.use("Agg")
-
 import pytest
 import torch
 
@@ -72,33 +68,7 @@ def test_summarize_uses_control_minus_repeated():
     assert len(result["per_sequence_benefit"]) == 2
 
 
-def test_run_end_to_end_with_fake_model(tmp_path, monkeypatch):
-    class FakeConfig:
-        n_ctx = 64
-        d_vocab = 50
-
-    class FakeTokenizer:
-        bos_token_id = 0
-        all_special_ids = [0, 1]
-
-    class FakeModel:
-        cfg = FakeConfig()
-        tokenizer = FakeTokenizer()
-
-        def eval(self):
-            pass
-
-        def __call__(self, tokens, return_type, loss_per_token):
-            n = tokens.shape[1] - 1
-            return torch.arange(n, dtype=torch.float)[None]
-
-    def fake_from_pretrained(name, device="cpu"):
-        return FakeModel()
-
-    import transformer_lens
-
-    monkeypatch.setattr(transformer_lens.HookedTransformer, "from_pretrained", fake_from_pretrained)
-
+def test_run_end_to_end_with_fake_model(tmp_path, patch_from_pretrained):
     summary = run(length=4, samples=3, seed=1, output=tmp_path)
 
     assert (tmp_path / "summary.json").exists()
@@ -109,11 +79,7 @@ def test_run_end_to_end_with_fake_model(tmp_path, monkeypatch):
     data = torch.load(tmp_path / "data.pt")
     assert data["repeated"].shape == (3, 9)
 
-    def unreachable_from_pretrained(name, device="cpu"):
-        raise AssertionError("from_pretrained should not be called")
 
-    monkeypatch.setattr(
-        transformer_lens.HookedTransformer, "from_pretrained", unreachable_from_pretrained
-    )
+def test_run_validates_before_loading(tmp_path, forbid_from_pretrained):
     with pytest.raises(ValueError):
         run(length=1, output=tmp_path)

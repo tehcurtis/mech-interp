@@ -1,0 +1,1676 @@
+{
+  "model": "attn-only-2l",
+  "device": "cpu",
+  "lengths": [
+    8,
+    16,
+    32,
+    64
+  ],
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "samples": 16,
+  "top_k": 2,
+  "n_layers": 2,
+  "n_heads": 8,
+  "ablation": "zero",
+  "conditions": [
+    "baseline",
+    "induction_ablated",
+    "control_ablated"
+  ],
+  "cells": [
+    {
+      "length": 8,
+      "seed": 0,
+      "conditions": {
+        "baseline": {
+          "first_block_loss": 15.78976058959961,
+          "repeated_second_block_loss": 4.672672271728516,
+          "control_second_block_loss": 15.35104751586914,
+          "paired_copying_benefit_nats": 10.678375244140625,
+          "paired_benefit_standard_error": 0.39660876989364624
+        },
+        "induction_ablated": {
+          "first_block_loss": 19.24612808227539,
+          "repeated_second_block_loss": 18.35852813720703,
+          "control_second_block_loss": 19.00897216796875,
+          "paired_copying_benefit_nats": 0.6504449248313904,
+          "paired_benefit_standard_error": 0.19058553874492645
+        },
+        "control_ablated": {
+          "first_block_loss": 15.701207160949707,
+          "repeated_second_block_loss": 4.546891212463379,
+          "control_second_block_loss": 15.461437225341797,
+          "paired_copying_benefit_nats": 10.914546012878418,
+          "paired_benefit_standard_error": 0.41793423891067505
+        }
+      },
+      "top_heads": [
+        {
+          "layer": 1,
+          "head": 6,
+          "induction_score": 0.4566114842891693,
+          "previous_token_score": 0.007393762469291687
+        },
+        {
+          "layer": 1,
+          "head": 7,
+          "induction_score": 0.09518788754940033,
+          "previous_token_score": 0.022604485973715782
+        }
+      ],
+      "control_heads": [
+        {
+          "layer": 1,
+          "head": 2,
+          "induction_score": 0.025480138137936592,
+          "previous_token_score": 0.08589299023151398
+        },
+        {
+          "layer": 1,
+          "head": 5,
+          "induction_score": 0.011139479465782642,
+          "previous_token_score": 0.04873774200677872
+        }
+      ],
+      "induction_scores": [
+        [
+          0.019776608794927597,
+          0.03326534107327461,
+          0.021298520267009735,
+          0.0010392321273684502,
+          0.013110245577991009,
+          0.0011317244498059154,
+          0.039838407188653946,
+          0.007556676398962736
+        ],
+        [
+          0.03180844336748123,
+          0.020928209647536278,
+          0.025480138137936592,
+          0.05668728053569794,
+          0.013837468810379505,
+          0.011139479465782642,
+          0.4566114842891693,
+          0.09518788754940033
+        ]
+      ]
+    },
+    {
+      "length": 8,
+      "seed": 1,
+      "conditions": {
+        "baseline": {
+          "first_block_loss": 16.11077117919922,
+          "repeated_second_block_loss": 4.432806491851807,
+          "control_second_block_loss": 15.541301727294922,
+          "paired_copying_benefit_nats": 11.10849666595459,
+          "paired_benefit_standard_error": 0.4713175594806671
+        },
+        "induction_ablated": {
+          "first_block_loss": 19.106006622314453,
+          "repeated_second_block_loss": 18.058380126953125,
+          "control_second_block_loss": 18.714038848876953,
+          "paired_copying_benefit_nats": 0.6556603908538818,
+          "paired_benefit_standard_error": 0.24405935406684875
+        },
+        "control_ablated": {
+          "first_block_loss": 16.073579788208008,
+          "repeated_second_block_loss": 4.308514595031738,
+          "control_second_block_loss": 15.430253028869629,
+          "paired_copying_benefit_nats": 11.12173843383789,
+          "paired_benefit_standard_error": 0.4495250880718231
+        }
+      },
+      "top_heads": [
+        {
+          "layer": 1,
+          "head": 6,
+          "induction_score": 0.45237040519714355,
+          "previous_token_score": 0.004984456580132246
+        },
+        {
+          "layer": 1,
+          "head": 7,
+          "induction_score": 0.10119788348674774,
+          "previous_token_score": 0.02083524689078331
+        }
+      ],
+      "control_heads": [
+        {
+          "layer": 1,
+          "head": 1,
+          "induction_score": 0.028585966676473618,
+          "previous_token_score": 0.0957871824502945
+        },
+        {
+          "layer": 1,
+          "head": 5,
+          "induction_score": 0.01609443500638008,
+          "previous_token_score": 0.0447237566113472
+        }
+      ],
+      "induction_scores": [
+        [
+          0.018758971244096756,
+          0.032473523169755936,
+          0.026335136964917183,
+          0.0008235763525590301,
+          0.013717354275286198,
+          0.0018434362718835473,
+          0.04100126773118973,
+          0.008393705822527409
+        ],
+        [
+          0.0385233499109745,
+          0.028585966676473618,
+          0.023994989693164825,
+          0.0525403656065464,
+          0.018872732296586037,
+          0.01609443500638008,
+          0.45237040519714355,
+          0.10119788348674774
+        ]
+      ]
+    },
+    {
+      "length": 8,
+      "seed": 2,
+      "conditions": {
+        "baseline": {
+          "first_block_loss": 15.480964660644531,
+          "repeated_second_block_loss": 4.05034065246582,
+          "control_second_block_loss": 15.30966854095459,
+          "paired_copying_benefit_nats": 11.25932788848877,
+          "paired_benefit_standard_error": 0.41771039366722107
+        },
+        "induction_ablated": {
+          "first_block_loss": 18.392431259155273,
+          "repeated_second_block_loss": 17.372636795043945,
+          "control_second_block_loss": 18.343215942382812,
+          "paired_copying_benefit_nats": 0.9705789685249329,
+          "paired_benefit_standard_error": 0.21658886969089508
+        },
+        "control_ablated": {
+          "first_block_loss": 16.300142288208008,
+          "repeated_second_block_loss": 4.269795894622803,
+          "control_second_block_loss": 16.085765838623047,
+          "paired_copying_benefit_nats": 11.815970420837402,
+          "paired_benefit_standard_error": 0.44591599702835083
+        }
+      },
+      "top_heads": [
+        {
+          "layer": 1,
+          "head": 6,
+          "induction_score": 0.4775966703891754,
+          "previous_token_score": 0.006229250691831112
+        },
+        {
+          "layer": 1,
+          "head": 7,
+          "induction_score": 0.11489344388246536,
+          "previous_token_score": 0.02375836670398712
+        }
+      ],
+      "control_heads": [
+        {
+          "layer": 1,
+          "head": 0,
+          "induction_score": 0.050382670015096664,
+          "previous_token_score": 0.06758086383342743
+        },
+        {
+          "layer": 1,
+          "head": 3,
+          "induction_score": 0.05477115511894226,
+          "previous_token_score": 0.08324981480836868
+        }
+      ],
+      "induction_scores": [
+        [
+          0.019359419122338295,
+          0.037718843668699265,
+          0.022715995088219643,
+          0.0008501971024088562,
+          0.012825577519834042,
+          0.001488198060542345,
+          0.050069693475961685,
+          0.008858193643391132
+        ],
+        [
+          0.050382670015096664,
+          0.028897365555167198,
+          0.02583395689725876,
+          0.05477115511894226,
+          0.014200236648321152,
+          0.022129129618406296,
+          0.4775966703891754,
+          0.11489344388246536
+        ]
+      ]
+    },
+    {
+      "length": 8,
+      "seed": 3,
+      "conditions": {
+        "baseline": {
+          "first_block_loss": 15.851947784423828,
+          "repeated_second_block_loss": 4.084624767303467,
+          "control_second_block_loss": 15.490433692932129,
+          "paired_copying_benefit_nats": 11.40580940246582,
+          "paired_benefit_standard_error": 0.5802476406097412
+        },
+        "induction_ablated": {
+          "first_block_loss": 18.64656639099121,
+          "repeated_second_block_loss": 17.81267547607422,
+          "control_second_block_loss": 18.33878517150879,
+          "paired_copying_benefit_nats": 0.5261108875274658,
+          "paired_benefit_standard_error": 0.2098388820886612
+        },
+        "control_ablated": {
+          "first_block_loss": 16.006126403808594,
+          "repeated_second_block_loss": 4.225482940673828,
+          "control_second_block_loss": 15.571203231811523,
+          "paired_copying_benefit_nats": 11.345720291137695,
+          "paired_benefit_standard_error": 0.5527157783508301
+        }
+      },
+      "top_heads": [
+        {
+          "layer": 1,
+          "head": 6,
+          "induction_score": 0.5076817274093628,
+          "previous_token_score": 0.008009816519916058
+        },
+        {
+          "layer": 1,
+          "head": 7,
+          "induction_score": 0.10419438779354095,
+          "previous_token_score": 0.02554967999458313
+        }
+      ],
+      "control_heads": [
+        {
+          "layer": 1,
+          "head": 0,
+          "induction_score": 0.04082735255360603,
+          "previous_token_score": 0.06974167376756668
+        },
+        {
+          "layer": 1,
+          "head": 4,
+          "induction_score": 0.010180664248764515,
+          "previous_token_score": 0.07386237382888794
+        }
+      ],
+      "induction_scores": [
+        [
+          0.019103964790701866,
+          0.031221909448504448,
+          0.022699348628520966,
+          0.0010035932064056396,
+          0.011827780865132809,
+          0.0016065101372078061,
+          0.04314422234892845,
+          0.006759289186447859
+        ],
+        [
+          0.04082735255360603,
+          0.017077313736081123,
+          0.019187185913324356,
+          0.05790010839700699,
+          0.010180664248764515,
+          0.012643178924918175,
+          0.5076817274093628,
+          0.10419438779354095
+        ]
+      ]
+    },
+    {
+      "length": 8,
+      "seed": 4,
+      "conditions": {
+        "baseline": {
+          "first_block_loss": 15.705018043518066,
+          "repeated_second_block_loss": 4.222580432891846,
+          "control_second_block_loss": 15.400369644165039,
+          "paired_copying_benefit_nats": 11.177788734436035,
+          "paired_benefit_standard_error": 0.5090231895446777
+        },
+        "induction_ablated": {
+          "first_block_loss": 18.725357055664062,
+          "repeated_second_block_loss": 17.529644012451172,
+          "control_second_block_loss": 18.545467376708984,
+          "paired_copying_benefit_nats": 1.0158226490020752,
+          "paired_benefit_standard_error": 0.1812305748462677
+        },
+        "control_ablated": {
+          "first_block_loss": 15.408288955688477,
+          "repeated_second_block_loss": 4.2927141189575195,
+          "control_second_block_loss": 15.15022087097168,
+          "paired_copying_benefit_nats": 10.857505798339844,
+          "paired_benefit_standard_error": 0.46482911705970764
+        }
+      },
+      "top_heads": [
+        {
+          "layer": 1,
+          "head": 6,
+          "induction_score": 0.48236799240112305,
+          "previous_token_score": 0.004600171931087971
+        },
+        {
+          "layer": 1,
+          "head": 7,
+          "induction_score": 0.10673606395721436,
+          "previous_token_score": 0.022537726908922195
+        }
+      ],
+      "control_heads": [
+        {
+          "layer": 1,
+          "head": 4,
+          "induction_score": 0.013800296001136303,
+          "previous_token_score": 0.07050184905529022
+        },
+        {
+          "layer": 1,
+          "head": 5,
+          "induction_score": 0.009038599207997322,
+          "previous_token_score": 0.038828831166028976
+        }
+      ],
+      "induction_scores": [
+        [
+          0.02009151130914688,
+          0.033112820237874985,
+          0.024183183908462524,
+          0.0009388952748849988,
+          0.0130448117852211,
+          0.0019024764187633991,
+          0.04874783754348755,
+          0.006381891202181578
+        ],
+        [
+          0.045878708362579346,
+          0.02885047346353531,
+          0.024780774489045143,
+          0.06686550378799438,
+          0.013800296001136303,
+          0.009038599207997322,
+          0.48236799240112305,
+          0.10673606395721436
+        ]
+      ]
+    },
+    {
+      "length": 16,
+      "seed": 0,
+      "conditions": {
+        "baseline": {
+          "first_block_loss": 15.563368797302246,
+          "repeated_second_block_loss": 4.272395610809326,
+          "control_second_block_loss": 14.86070442199707,
+          "paired_copying_benefit_nats": 10.588309288024902,
+          "paired_benefit_standard_error": 0.3038081228733063
+        },
+        "induction_ablated": {
+          "first_block_loss": 18.84992790222168,
+          "repeated_second_block_loss": 18.02239990234375,
+          "control_second_block_loss": 18.505584716796875,
+          "paired_copying_benefit_nats": 0.48318684101104736,
+          "paired_benefit_standard_error": 0.10154308378696442
+        },
+        "control_ablated": {
+          "first_block_loss": 15.642904281616211,
+          "repeated_second_block_loss": 4.126162052154541,
+          "control_second_block_loss": 15.117849349975586,
+          "paired_copying_benefit_nats": 10.991687774658203,
+          "paired_benefit_standard_error": 0.2979818284511566
+        }
+      },
+      "top_heads": [
+        {
+          "layer": 1,
+          "head": 6,
+          "induction_score": 0.5487587451934814,
+          "previous_token_score": 0.006134097930043936
+        },
+        {
+          "layer": 1,
+          "head": 7,
+          "induction_score": 0.07222351431846619,
+          "previous_token_score": 0.015550337731838226
+        }
+      ],
+      "control_heads": [
+        {
+          "layer": 1,
+          "head": 2,
+          "induction_score": 0.005214756820350885,
+          "previous_token_score": 0.07867874205112457
+        },
+        {
+          "layer": 1,
+          "head": 5,
+          "induction_score": 0.007765198592096567,
+          "previous_token_score": 0.04043960198760033
+        }
+      ],
+      "induction_scores": [
+        [
+          0.0020280431490391493,
+          0.013833297416567802,
+          0.013415361754596233,
+          0.002085740678012371,
+          0.009986147284507751,
+          0.0003218945930711925,
+          0.019747942686080933,
+          0.00657155504450202
+        ],
+        [
+          0.015687866136431694,
+          0.0026590025518089533,
+          0.005214756820350885,
+          0.020267590880393982,
+          0.0024098267313092947,
+          0.007765198592096567,
+          0.5487587451934814,
+          0.07222351431846619
+        ]
+      ]
+    },
+    {
+      "length": 16,
+      "seed": 1,
+      "conditions": {
+        "baseline": {
+          "first_block_loss": 15.911916732788086,
+          "repeated_second_block_loss": 4.1636271476745605,
+          "control_second_block_loss": 15.121845245361328,
+          "paired_copying_benefit_nats": 10.95821762084961,
+          "paired_benefit_standard_error": 0.37951406836509705
+        },
+        "induction_ablated": {
+          "first_block_loss": 19.094282150268555,
+          "repeated_second_block_loss": 18.10163688659668,
+          "control_second_block_loss": 18.538597106933594,
+          "paired_copying_benefit_nats": 0.43695759773254395,
+          "paired_benefit_standard_error": 0.15727032721042633
+        },
+        "control_ablated": {
+          "first_block_loss": 15.889491081237793,
+          "repeated_second_block_loss": 3.9394540786743164,
+          "control_second_block_loss": 15.213691711425781,
+          "paired_copying_benefit_nats": 11.274237632751465,
+          "paired_benefit_standard_error": 0.38993754982948303
+        }
+      },
+      "top_heads": [
+        {
+          "layer": 1,
+          "head": 6,
+          "induction_score": 0.5523234009742737,
+          "previous_token_score": 0.003985827788710594
+        },
+        {
+          "layer": 1,
+          "head": 7,
+          "induction_score": 0.07576258480548859,
+          "previous_token_score": 0.015643322840332985
+        }
+      ],
+      "control_heads": [
+        {
+          "layer": 1,
+          "head": 1,
+          "induction_score": 0.0031320564448833466,
+          "previous_token_score": 0.0842701643705368
+        },
+        {
+          "layer": 1,
+          "head": 5,
+          "induction_score": 0.004580061882734299,
+          "previous_token_score": 0.03964709863066673
+        }
+      ],
+      "induction_scores": [
+        [
+          0.0019973525777459145,
+          0.012953124940395355,
+          0.014164179563522339,
+          0.0020199092105031013,
+          0.009876584634184837,
+          0.0003601417993195355,
+          0.020037880167365074,
+          0.0061764344573020935
+        ],
+        [
+          0.01877860724925995,
+          0.0031320564448833466,
+          0.007456274703145027,
+          0.019267141819000244,
+          0.0032195670064538717,
+          0.004580061882734299,
+          0.5523234009742737,
+          0.07576258480548859
+        ]
+      ]
+    },
+    {
+      "length": 16,
+      "seed": 2,
+      "conditions": {
+        "baseline": {
+          "first_block_loss": 15.590910911560059,
+          "repeated_second_block_loss": 3.8265562057495117,
+          "control_second_block_loss": 14.891546249389648,
+          "paired_copying_benefit_nats": 11.06498908996582,
+          "paired_benefit_standard_error": 0.28276166319847107
+        },
+        "induction_ablated": {
+          "first_block_loss": 18.417097091674805,
+          "repeated_second_block_loss": 17.565481185913086,
+          "control_second_block_loss": 18.096195220947266,
+          "paired_copying_benefit_nats": 0.5307125449180603,
+          "paired_benefit_standard_error": 0.11623791605234146
+        },
+        "control_ablated": {
+          "first_block_loss": 16.43600845336914,
+          "repeated_second_block_loss": 3.9368817806243896,
+          "control_second_block_loss": 15.770866394042969,
+          "paired_copying_benefit_nats": 11.833983421325684,
+          "paired_benefit_standard_error": 0.3062029778957367
+        }
+      },
+      "top_heads": [
+        {
+          "layer": 1,
+          "head": 6,
+          "induction_score": 0.5863777995109558,
+          "previous_token_score": 0.0067744022235274315
+        },
+        {
+          "layer": 1,
+          "head": 7,
+          "induction_score": 0.08316938579082489,
+          "previous_token_score": 0.017584174871444702
+        }
+      ],
+      "control_heads": [
+        {
+          "layer": 1,
+          "head": 0,
+          "induction_score": 0.023313213139772415,
+          "previous_token_score": 0.06322450935840607
+        },
+        {
+          "layer": 1,
+          "head": 3,
+          "induction_score": 0.022729964926838875,
+          "previous_token_score": 0.08508586883544922
+        }
+      ],
+      "induction_scores": [
+        [
+          0.001948574441485107,
+          0.013761846348643303,
+          0.012574905529618263,
+          0.0017776041058823466,
+          0.009685777127742767,
+          0.00028528229449875653,
+          0.021879564970731735,
+          0.006160612218081951
+        ],
+        [
+          0.023313213139772415,
+          0.00323181739076972,
+          0.006373644806444645,
+          0.022729964926838875,
+          0.0028184903785586357,
+          0.012802998535335064,
+          0.5863777995109558,
+          0.08316938579082489
+        ]
+      ]
+    },
+    {
+      "length": 16,
+      "seed": 3,
+      "conditions": {
+        "baseline": {
+          "first_block_loss": 15.552173614501953,
+          "repeated_second_block_loss": 3.591519355773926,
+          "control_second_block_loss": 14.799436569213867,
+          "paired_copying_benefit_nats": 11.207918167114258,
+          "paired_benefit_standard_error": 0.2957995533943176
+        },
+        "induction_ablated": {
+          "first_block_loss": 18.53175163269043,
+          "repeated_second_block_loss": 17.86461639404297,
+          "control_second_block_loss": 18.18291473388672,
+          "paired_copying_benefit_nats": 0.3182988166809082,
+          "paired_benefit_standard_error": 0.11371397972106934
+        },
+        "control_ablated": {
+          "first_block_loss": 15.708003997802734,
+          "repeated_second_block_loss": 3.7991113662719727,
+          "control_second_block_loss": 14.927488327026367,
+          "paired_copying_benefit_nats": 11.128376960754395,
+          "paired_benefit_standard_error": 0.28190380334854126
+        }
+      },
+      "top_heads": [
+        {
+          "layer": 1,
+          "head": 6,
+          "induction_score": 0.5749062299728394,
+          "previous_token_score": 0.005999668501317501
+        },
+        {
+          "layer": 1,
+          "head": 7,
+          "induction_score": 0.07441158592700958,
+          "previous_token_score": 0.0160271804779768
+        }
+      ],
+      "control_heads": [
+        {
+          "layer": 1,
+          "head": 0,
+          "induction_score": 0.018305737525224686,
+          "previous_token_score": 0.06092831492424011
+        },
+        {
+          "layer": 1,
+          "head": 4,
+          "induction_score": 0.001718718558549881,
+          "previous_token_score": 0.06578488647937775
+        }
+      ],
+      "induction_scores": [
+        [
+          0.0018898948328569531,
+          0.01300097070634365,
+          0.012507574632763863,
+          0.0017952193738892674,
+          0.00949105154722929,
+          0.0003220974176656455,
+          0.019800128415226936,
+          0.005349538289010525
+        ],
+        [
+          0.018305737525224686,
+          0.0023986403830349445,
+          0.004323390778154135,
+          0.020769964903593063,
+          0.001718718558549881,
+          0.01030473131686449,
+          0.5749062299728394,
+          0.07441158592700958
+        ]
+      ]
+    },
+    {
+      "length": 16,
+      "seed": 4,
+      "conditions": {
+        "baseline": {
+          "first_block_loss": 15.588957786560059,
+          "repeated_second_block_loss": 3.764517307281494,
+          "control_second_block_loss": 14.777069091796875,
+          "paired_copying_benefit_nats": 11.012552261352539,
+          "paired_benefit_standard_error": 0.321471244096756
+        },
+        "induction_ablated": {
+          "first_block_loss": 18.679946899414062,
+          "repeated_second_block_loss": 17.756526947021484,
+          "control_second_block_loss": 18.19391441345215,
+          "paired_copying_benefit_nats": 0.4373871684074402,
+          "paired_benefit_standard_error": 0.16968151926994324
+        },
+        "control_ablated": {
+          "first_block_loss": 15.301595687866211,
+          "repeated_second_block_loss": 3.789027690887451,
+          "control_second_block_loss": 14.697476387023926,
+          "paired_copying_benefit_nats": 10.908449172973633,
+          "paired_benefit_standard_error": 0.3192298412322998
+        }
+      },
+      "top_heads": [
+        {
+          "layer": 1,
+          "head": 6,
+          "induction_score": 0.571546196937561,
+          "previous_token_score": 0.003958150278776884
+        },
+        {
+          "layer": 1,
+          "head": 7,
+          "induction_score": 0.07594369351863861,
+          "previous_token_score": 0.016897810623049736
+        }
+      ],
+      "control_heads": [
+        {
+          "layer": 1,
+          "head": 4,
+          "induction_score": 0.0022971038706600666,
+          "previous_token_score": 0.07366026937961578
+        },
+        {
+          "layer": 1,
+          "head": 5,
+          "induction_score": 0.004204361233860254,
+          "previous_token_score": 0.046584200114011765
+        }
+      ],
+      "induction_scores": [
+        [
+          0.002106612781062722,
+          0.013303237967193127,
+          0.013747405260801315,
+          0.001988007454201579,
+          0.00994690041989088,
+          0.0003374336229171604,
+          0.022676538676023483,
+          0.00552341528236866
+        ],
+        [
+          0.018067922443151474,
+          0.0027322061359882355,
+          0.007838588207960129,
+          0.021435856819152832,
+          0.0022971038706600666,
+          0.004204361233860254,
+          0.571546196937561,
+          0.07594369351863861
+        ]
+      ]
+    },
+    {
+      "length": 32,
+      "seed": 0,
+      "conditions": {
+        "baseline": {
+          "first_block_loss": 15.224126815795898,
+          "repeated_second_block_loss": 3.732329845428467,
+          "control_second_block_loss": 14.465653419494629,
+          "paired_copying_benefit_nats": 10.733325004577637,
+          "paired_benefit_standard_error": 0.2222178429365158
+        },
+        "induction_ablated": {
+          "first_block_loss": 18.797786712646484,
+          "repeated_second_block_loss": 18.186817169189453,
+          "control_second_block_loss": 18.390779495239258,
+          "paired_copying_benefit_nats": 0.20396184921264648,
+          "paired_benefit_standard_error": 0.0667048841714859
+        },
+        "control_ablated": {
+          "first_block_loss": 15.429123878479004,
+          "repeated_second_block_loss": 3.5834202766418457,
+          "control_second_block_loss": 14.803979873657227,
+          "paired_copying_benefit_nats": 11.220560073852539,
+          "paired_benefit_standard_error": 0.2045421600341797
+        }
+      },
+      "top_heads": [
+        {
+          "layer": 1,
+          "head": 6,
+          "induction_score": 0.6286404728889465,
+          "previous_token_score": 0.0035905775148421526
+        },
+        {
+          "layer": 1,
+          "head": 7,
+          "induction_score": 0.04820685088634491,
+          "previous_token_score": 0.014507611282169819
+        }
+      ],
+      "control_heads": [
+        {
+          "layer": 1,
+          "head": 2,
+          "induction_score": 0.0003578726318664849,
+          "previous_token_score": 0.0812750905752182
+        },
+        {
+          "layer": 1,
+          "head": 5,
+          "induction_score": 0.001981502864509821,
+          "previous_token_score": 0.037172362208366394
+        }
+      ],
+      "induction_scores": [
+        [
+          0.0015996691072359681,
+          0.004295163322240114,
+          0.0064712511375546455,
+          0.0005229432717896998,
+          0.006706527434289455,
+          0.00011012754839612171,
+          0.008076879195868969,
+          0.004328836686909199
+        ],
+        [
+          0.004745734389871359,
+          6.431879592128098e-05,
+          0.0003578726318664849,
+          0.0037704226560890675,
+          9.393909567734227e-05,
+          0.001981502864509821,
+          0.6286404728889465,
+          0.04820685088634491
+        ]
+      ]
+    },
+    {
+      "length": 32,
+      "seed": 1,
+      "conditions": {
+        "baseline": {
+          "first_block_loss": 15.478277206420898,
+          "repeated_second_block_loss": 3.641625165939331,
+          "control_second_block_loss": 14.524312973022461,
+          "paired_copying_benefit_nats": 10.882686614990234,
+          "paired_benefit_standard_error": 0.1783706098794937
+        },
+        "induction_ablated": {
+          "first_block_loss": 18.88871192932129,
+          "repeated_second_block_loss": 18.21255111694336,
+          "control_second_block_loss": 18.38079833984375,
+          "paired_copying_benefit_nats": 0.16824734210968018,
+          "paired_benefit_standard_error": 0.06063441187143326
+        },
+        "control_ablated": {
+          "first_block_loss": 15.541552543640137,
+          "repeated_second_block_loss": 3.492682456970215,
+          "control_second_block_loss": 14.678478240966797,
+          "paired_copying_benefit_nats": 11.185795783996582,
+          "paired_benefit_standard_error": 0.16905033588409424
+        }
+      },
+      "top_heads": [
+        {
+          "layer": 1,
+          "head": 6,
+          "induction_score": 0.6336001753807068,
+          "previous_token_score": 0.004565170966088772
+        },
+        {
+          "layer": 1,
+          "head": 7,
+          "induction_score": 0.04797074943780899,
+          "previous_token_score": 0.014417734928429127
+        }
+      ],
+      "control_heads": [
+        {
+          "layer": 1,
+          "head": 1,
+          "induction_score": 5.53969330212567e-05,
+          "previous_token_score": 0.0993814468383789
+        },
+        {
+          "layer": 1,
+          "head": 5,
+          "induction_score": 0.0015390589833259583,
+          "previous_token_score": 0.041223447769880295
+        }
+      ],
+      "induction_scores": [
+        [
+          0.0015689230058342218,
+          0.00420377217233181,
+          0.006500581279397011,
+          0.0004923296510241926,
+          0.006708527449518442,
+          0.00012150275870226324,
+          0.00813992042094469,
+          0.004320534411817789
+        ],
+        [
+          0.005250437185168266,
+          5.53969330212567e-05,
+          0.00039918613038025796,
+          0.0029238595161587,
+          0.0001115129780373536,
+          0.0015390589833259583,
+          0.6336001753807068,
+          0.04797074943780899
+        ]
+      ]
+    },
+    {
+      "length": 32,
+      "seed": 2,
+      "conditions": {
+        "baseline": {
+          "first_block_loss": 15.214567184448242,
+          "repeated_second_block_loss": 3.5081164836883545,
+          "control_second_block_loss": 14.343730926513672,
+          "paired_copying_benefit_nats": 10.835615158081055,
+          "paired_benefit_standard_error": 0.18060140311717987
+        },
+        "induction_ablated": {
+          "first_block_loss": 18.213106155395508,
+          "repeated_second_block_loss": 17.595998764038086,
+          "control_second_block_loss": 17.84348487854004,
+          "paired_copying_benefit_nats": 0.24748611450195312,
+          "paired_benefit_standard_error": 0.1056872233748436
+        },
+        "control_ablated": {
+          "first_block_loss": 16.14157485961914,
+          "repeated_second_block_loss": 3.5232391357421875,
+          "control_second_block_loss": 15.238256454467773,
+          "paired_copying_benefit_nats": 11.715019226074219,
+          "paired_benefit_standard_error": 0.1827518790960312
+        }
+      },
+      "top_heads": [
+        {
+          "layer": 1,
+          "head": 6,
+          "induction_score": 0.6519310474395752,
+          "previous_token_score": 0.005042645614594221
+        },
+        {
+          "layer": 1,
+          "head": 7,
+          "induction_score": 0.05313817784190178,
+          "previous_token_score": 0.014723755419254303
+        }
+      ],
+      "control_heads": [
+        {
+          "layer": 1,
+          "head": 0,
+          "induction_score": 0.006568811368197203,
+          "previous_token_score": 0.059644266963005066
+        },
+        {
+          "layer": 1,
+          "head": 3,
+          "induction_score": 0.003414909355342388,
+          "previous_token_score": 0.08568118512630463
+        }
+      ],
+      "induction_scores": [
+        [
+          0.0015700567746534944,
+          0.0044001922942698,
+          0.006274207029491663,
+          0.0004926518304273486,
+          0.006577413994818926,
+          0.00011946491576964036,
+          0.008497701026499271,
+          0.0037979059852659702
+        ],
+        [
+          0.006568811368197203,
+          9.398370457347482e-05,
+          0.0007813371485099196,
+          0.003414909355342388,
+          0.00014171985094435513,
+          0.0028036232106387615,
+          0.6519310474395752,
+          0.05313817784190178
+        ]
+      ]
+    },
+    {
+      "length": 32,
+      "seed": 3,
+      "conditions": {
+        "baseline": {
+          "first_block_loss": 15.248512268066406,
+          "repeated_second_block_loss": 3.514949083328247,
+          "control_second_block_loss": 14.354227066040039,
+          "paired_copying_benefit_nats": 10.839278221130371,
+          "paired_benefit_standard_error": 0.17758533358573914
+        },
+        "induction_ablated": {
+          "first_block_loss": 18.453163146972656,
+          "repeated_second_block_loss": 17.915645599365234,
+          "control_second_block_loss": 18.00034523010254,
+          "paired_copying_benefit_nats": 0.08470010757446289,
+          "paired_benefit_standard_error": 0.08397907018661499
+        },
+        "control_ablated": {
+          "first_block_loss": 15.368473052978516,
+          "repeated_second_block_loss": 3.650151252746582,
+          "control_second_block_loss": 14.45083999633789,
+          "paired_copying_benefit_nats": 10.800688743591309,
+          "paired_benefit_standard_error": 0.17205888032913208
+        }
+      },
+      "top_heads": [
+        {
+          "layer": 1,
+          "head": 6,
+          "induction_score": 0.6466560959815979,
+          "previous_token_score": 0.004374881740659475
+        },
+        {
+          "layer": 1,
+          "head": 7,
+          "induction_score": 0.0531521737575531,
+          "previous_token_score": 0.013796730898320675
+        }
+      ],
+      "control_heads": [
+        {
+          "layer": 1,
+          "head": 0,
+          "induction_score": 0.0056097921915352345,
+          "previous_token_score": 0.05803640931844711
+        },
+        {
+          "layer": 1,
+          "head": 4,
+          "induction_score": 0.00010204226418863982,
+          "previous_token_score": 0.07168393582105637
+        }
+      ],
+      "induction_scores": [
+        [
+          0.0015083380276337266,
+          0.004076520446687937,
+          0.006340045016258955,
+          0.0005335321184247732,
+          0.006493567023426294,
+          0.00014509342145174742,
+          0.008597102016210556,
+          0.003942910581827164
+        ],
+        [
+          0.0056097921915352345,
+          6.899164145579562e-05,
+          0.0004368812660686672,
+          0.0036182133480906487,
+          0.00010204226418863982,
+          0.0015404368750751019,
+          0.6466560959815979,
+          0.0531521737575531
+        ]
+      ]
+    },
+    {
+      "length": 32,
+      "seed": 4,
+      "conditions": {
+        "baseline": {
+          "first_block_loss": 15.416396141052246,
+          "repeated_second_block_loss": 3.5871059894561768,
+          "control_second_block_loss": 14.54511833190918,
+          "paired_copying_benefit_nats": 10.958011627197266,
+          "paired_benefit_standard_error": 0.20990152657032013
+        },
+        "induction_ablated": {
+          "first_block_loss": 18.659530639648438,
+          "repeated_second_block_loss": 17.974103927612305,
+          "control_second_block_loss": 18.17951202392578,
+          "paired_copying_benefit_nats": 0.2054080367088318,
+          "paired_benefit_standard_error": 0.11023284494876862
+        },
+        "control_ablated": {
+          "first_block_loss": 15.212310791015625,
+          "repeated_second_block_loss": 3.60532808303833,
+          "control_second_block_loss": 14.455436706542969,
+          "paired_copying_benefit_nats": 10.850109100341797,
+          "paired_benefit_standard_error": 0.19673120975494385
+        }
+      },
+      "top_heads": [
+        {
+          "layer": 1,
+          "head": 6,
+          "induction_score": 0.6361443996429443,
+          "previous_token_score": 0.003157505067065358
+        },
+        {
+          "layer": 1,
+          "head": 7,
+          "induction_score": 0.050362300127744675,
+          "previous_token_score": 0.013956071808934212
+        }
+      ],
+      "control_heads": [
+        {
+          "layer": 1,
+          "head": 4,
+          "induction_score": 0.00010556142660789192,
+          "previous_token_score": 0.07608742266893387
+        },
+        {
+          "layer": 1,
+          "head": 5,
+          "induction_score": 0.002778551774099469,
+          "previous_token_score": 0.040064096450805664
+        }
+      ],
+      "induction_scores": [
+        [
+          0.0015644729137420654,
+          0.0043782759457826614,
+          0.006856625899672508,
+          0.0004876901220995933,
+          0.0067132022231817245,
+          0.00013285512977745384,
+          0.009090006351470947,
+          0.004324606619775295
+        ],
+        [
+          0.005396384745836258,
+          7.718821871094406e-05,
+          0.0013067719992250204,
+          0.0037122515495866537,
+          0.00010556142660789192,
+          0.002778551774099469,
+          0.6361443996429443,
+          0.050362300127744675
+        ]
+      ]
+    },
+    {
+      "length": 64,
+      "seed": 0,
+      "conditions": {
+        "baseline": {
+          "first_block_loss": 14.72942066192627,
+          "repeated_second_block_loss": 3.680924415588379,
+          "control_second_block_loss": 13.836566925048828,
+          "paired_copying_benefit_nats": 10.155643463134766,
+          "paired_benefit_standard_error": 0.152152881026268
+        },
+        "induction_ablated": {
+          "first_block_loss": 18.325523376464844,
+          "repeated_second_block_loss": 17.824382781982422,
+          "control_second_block_loss": 17.928836822509766,
+          "paired_copying_benefit_nats": 0.10445451736450195,
+          "paired_benefit_standard_error": 0.04437495023012161
+        },
+        "control_ablated": {
+          "first_block_loss": 15.007316589355469,
+          "repeated_second_block_loss": 3.5322227478027344,
+          "control_second_block_loss": 14.18843936920166,
+          "paired_copying_benefit_nats": 10.65621566772461,
+          "paired_benefit_standard_error": 0.14667923748493195
+        }
+      },
+      "top_heads": [
+        {
+          "layer": 1,
+          "head": 6,
+          "induction_score": 0.6544376611709595,
+          "previous_token_score": 0.0031788796186447144
+        },
+        {
+          "layer": 1,
+          "head": 7,
+          "induction_score": 0.027266105636954308,
+          "previous_token_score": 0.012601678259670734
+        }
+      ],
+      "control_heads": [
+        {
+          "layer": 1,
+          "head": 2,
+          "induction_score": 1.6538511772523634e-05,
+          "previous_token_score": 0.08841343224048615
+        },
+        {
+          "layer": 1,
+          "head": 5,
+          "induction_score": 0.0002705221122596413,
+          "previous_token_score": 0.03764322027564049
+        }
+      ],
+      "induction_scores": [
+        [
+          0.0005634407862089574,
+          0.0007366301724687219,
+          0.002533336402848363,
+          0.00027512776432558894,
+          0.003745171008631587,
+          2.98967570415698e-05,
+          0.0027169515378773212,
+          0.0026414317544549704
+        ],
+        [
+          0.0009942658944055438,
+          6.158712153592205e-07,
+          1.6538511772523634e-05,
+          0.00022559375793207437,
+          2.436662725813221e-06,
+          0.0002705221122596413,
+          0.6544376611709595,
+          0.027266105636954308
+        ]
+      ]
+    },
+    {
+      "length": 64,
+      "seed": 1,
+      "conditions": {
+        "baseline": {
+          "first_block_loss": 14.934130668640137,
+          "repeated_second_block_loss": 3.5584146976470947,
+          "control_second_block_loss": 14.04356575012207,
+          "paired_copying_benefit_nats": 10.485151290893555,
+          "paired_benefit_standard_error": 0.15579482913017273
+        },
+        "induction_ablated": {
+          "first_block_loss": 18.359827041625977,
+          "repeated_second_block_loss": 17.87381362915039,
+          "control_second_block_loss": 17.987411499023438,
+          "paired_copying_benefit_nats": 0.11359548568725586,
+          "paired_benefit_standard_error": 0.04513068497180939
+        },
+        "control_ablated": {
+          "first_block_loss": 15.080194473266602,
+          "repeated_second_block_loss": 3.4555718898773193,
+          "control_second_block_loss": 14.238578796386719,
+          "paired_copying_benefit_nats": 10.78300666809082,
+          "paired_benefit_standard_error": 0.16008950769901276
+        }
+      },
+      "top_heads": [
+        {
+          "layer": 1,
+          "head": 6,
+          "induction_score": 0.6641601324081421,
+          "previous_token_score": 0.0034289469476789236
+        },
+        {
+          "layer": 1,
+          "head": 7,
+          "induction_score": 0.02841310203075409,
+          "previous_token_score": 0.012704270891845226
+        }
+      ],
+      "control_heads": [
+        {
+          "layer": 1,
+          "head": 1,
+          "induction_score": 8.117360721371369e-07,
+          "previous_token_score": 0.08953655511140823
+        },
+        {
+          "layer": 1,
+          "head": 5,
+          "induction_score": 0.00024391632177866995,
+          "previous_token_score": 0.03664838522672653
+        }
+      ],
+      "induction_scores": [
+        [
+          0.0005649728118441999,
+          0.0007574310875497758,
+          0.002398922573775053,
+          0.0002590803778730333,
+          0.003801383078098297,
+          2.5376763005624525e-05,
+          0.003090294310823083,
+          0.0025760389398783445
+        ],
+        [
+          0.0013647015439346433,
+          8.117360721371369e-07,
+          4.244016599841416e-05,
+          0.00032334798015654087,
+          5.127396434545517e-06,
+          0.00024391632177866995,
+          0.6641601324081421,
+          0.02841310203075409
+        ]
+      ]
+    },
+    {
+      "length": 64,
+      "seed": 2,
+      "conditions": {
+        "baseline": {
+          "first_block_loss": 14.830327987670898,
+          "repeated_second_block_loss": 3.4104764461517334,
+          "control_second_block_loss": 13.91561222076416,
+          "paired_copying_benefit_nats": 10.505136489868164,
+          "paired_benefit_standard_error": 0.1451236605644226
+        },
+        "induction_ablated": {
+          "first_block_loss": 18.223682403564453,
+          "repeated_second_block_loss": 17.783042907714844,
+          "control_second_block_loss": 17.80307388305664,
+          "paired_copying_benefit_nats": 0.020030975341796875,
+          "paired_benefit_standard_error": 0.04503308981657028
+        },
+        "control_ablated": {
+          "first_block_loss": 15.799022674560547,
+          "repeated_second_block_loss": 3.456414222717285,
+          "control_second_block_loss": 14.748598098754883,
+          "paired_copying_benefit_nats": 11.292183876037598,
+          "paired_benefit_standard_error": 0.15045644342899323
+        }
+      },
+      "top_heads": [
+        {
+          "layer": 1,
+          "head": 6,
+          "induction_score": 0.6775985360145569,
+          "previous_token_score": 0.003441648557782173
+        },
+        {
+          "layer": 1,
+          "head": 7,
+          "induction_score": 0.028795773163437843,
+          "previous_token_score": 0.012860594317317009
+        }
+      ],
+      "control_heads": [
+        {
+          "layer": 1,
+          "head": 0,
+          "induction_score": 0.00111629709135741,
+          "previous_token_score": 0.05278434976935387
+        },
+        {
+          "layer": 1,
+          "head": 3,
+          "induction_score": 0.0002493700885679573,
+          "previous_token_score": 0.07850595563650131
+        }
+      ],
+      "induction_scores": [
+        [
+          0.0005771546857431531,
+          0.0007416227599605918,
+          0.002336062490940094,
+          0.0002682483464013785,
+          0.0037180399522185326,
+          2.4427530661341734e-05,
+          0.0028707017190754414,
+          0.0025825994089245796
+        ],
+        [
+          0.00111629709135741,
+          8.680610790179344e-07,
+          3.0259294362622313e-05,
+          0.0002493700885679573,
+          2.3750485524942633e-06,
+          0.0002592096570879221,
+          0.6775985360145569,
+          0.028795773163437843
+        ]
+      ]
+    },
+    {
+      "length": 64,
+      "seed": 3,
+      "conditions": {
+        "baseline": {
+          "first_block_loss": 14.7496337890625,
+          "repeated_second_block_loss": 3.557325601577759,
+          "control_second_block_loss": 13.90369701385498,
+          "paired_copying_benefit_nats": 10.346372604370117,
+          "paired_benefit_standard_error": 0.14396099746227264
+        },
+        "induction_ablated": {
+          "first_block_loss": 18.257568359375,
+          "repeated_second_block_loss": 17.787832260131836,
+          "control_second_block_loss": 17.871362686157227,
+          "paired_copying_benefit_nats": 0.08353161811828613,
+          "paired_benefit_standard_error": 0.031278133392333984
+        },
+        "control_ablated": {
+          "first_block_loss": 14.88901138305664,
+          "repeated_second_block_loss": 3.685889720916748,
+          "control_second_block_loss": 14.020774841308594,
+          "paired_copying_benefit_nats": 10.334885597229004,
+          "paired_benefit_standard_error": 0.1388242244720459
+        }
+      },
+      "top_heads": [
+        {
+          "layer": 1,
+          "head": 6,
+          "induction_score": 0.6726047396659851,
+          "previous_token_score": 0.003218734171241522
+        },
+        {
+          "layer": 1,
+          "head": 7,
+          "induction_score": 0.029141400009393692,
+          "previous_token_score": 0.012010404840111732
+        }
+      ],
+      "control_heads": [
+        {
+          "layer": 1,
+          "head": 0,
+          "induction_score": 0.0009582979837432504,
+          "previous_token_score": 0.05291453376412392
+        },
+        {
+          "layer": 1,
+          "head": 4,
+          "induction_score": 1.7610026361580822e-06,
+          "previous_token_score": 0.06712305545806885
+        }
+      ],
+      "induction_scores": [
+        [
+          0.0005402009701356292,
+          0.0007169012678787112,
+          0.0024306154809892178,
+          0.0002584445755928755,
+          0.0037198218051344156,
+          3.10461109620519e-05,
+          0.0030896509997546673,
+          0.0026317788287997246
+        ],
+        [
+          0.0009582979837432504,
+          6.238919354473182e-07,
+          1.3409093298832886e-05,
+          0.00023511650215368718,
+          1.7610026361580822e-06,
+          0.0005658603040501475,
+          0.6726047396659851,
+          0.029141400009393692
+        ]
+      ]
+    },
+    {
+      "length": 64,
+      "seed": 4,
+      "conditions": {
+        "baseline": {
+          "first_block_loss": 14.905881881713867,
+          "repeated_second_block_loss": 3.373676300048828,
+          "control_second_block_loss": 13.941478729248047,
+          "paired_copying_benefit_nats": 10.567802429199219,
+          "paired_benefit_standard_error": 0.191304013133049
+        },
+        "induction_ablated": {
+          "first_block_loss": 18.385419845581055,
+          "repeated_second_block_loss": 17.858200073242188,
+          "control_second_block_loss": 17.93130111694336,
+          "paired_copying_benefit_nats": 0.07310092449188232,
+          "paired_benefit_standard_error": 0.03618759289383888
+        },
+        "control_ablated": {
+          "first_block_loss": 14.763522148132324,
+          "repeated_second_block_loss": 3.402202606201172,
+          "control_second_block_loss": 13.893190383911133,
+          "paired_copying_benefit_nats": 10.490985870361328,
+          "paired_benefit_standard_error": 0.1976868361234665
+        }
+      },
+      "top_heads": [
+        {
+          "layer": 1,
+          "head": 6,
+          "induction_score": 0.6780785322189331,
+          "previous_token_score": 0.0028576860204339027
+        },
+        {
+          "layer": 1,
+          "head": 7,
+          "induction_score": 0.029815075919032097,
+          "previous_token_score": 0.012818398885428905
+        }
+      ],
+      "control_heads": [
+        {
+          "layer": 1,
+          "head": 4,
+          "induction_score": 2.6680895643949043e-06,
+          "previous_token_score": 0.06733138859272003
+        },
+        {
+          "layer": 1,
+          "head": 5,
+          "induction_score": 0.00035348269739188254,
+          "previous_token_score": 0.031526677310466766
+        }
+      ],
+      "induction_scores": [
+        [
+          0.0005709807737730443,
+          0.0007504370878450572,
+          0.0026746729854494333,
+          0.00027145829517394304,
+          0.0037279638927429914,
+          3.1863251933827996e-05,
+          0.003088013269007206,
+          0.0026947634760290384
+        ],
+        [
+          0.0010536948684602976,
+          7.637212320332765e-07,
+          6.669741560472175e-05,
+          0.0002477554662618786,
+          2.6680895643949043e-06,
+          0.00035348269739188254,
+          0.6780785322189331,
+          0.029815075919032097
+        ]
+      ]
+    }
+  ],
+  "per_length": [
+    {
+      "length": 8,
+      "n_seeds": 5,
+      "benefit": {
+        "baseline": {
+          "mean": 11.125959587097167,
+          "std": 0.27359915075091884
+        },
+        "induction_ablated": {
+          "mean": 0.7637235641479492,
+          "std": 0.21639812299486236
+        },
+        "control_ablated": {
+          "mean": 11.21109619140625,
+          "std": 0.3888924867331017
+        }
+      },
+      "top1_head_counts": {
+        "L1H6": 5
+      },
+      "top1_consistency": 1.0,
+      "top1_induction_score": {
+        "mean": 0.47532565593719484,
+        "std": 0.022242027378561437
+      }
+    },
+    {
+      "length": 16,
+      "n_seeds": 5,
+      "benefit": {
+        "baseline": {
+          "mean": 10.966397285461426,
+          "std": 0.230868145652462
+        },
+        "induction_ablated": {
+          "mean": 0.44130859375,
+          "std": 0.07891857841434928
+        },
+        "control_ablated": {
+          "mean": 11.227346992492675,
+          "std": 0.36648077792627
+        }
+      },
+      "top1_head_counts": {
+        "L1H6": 5
+      },
+      "top1_consistency": 1.0,
+      "top1_induction_score": {
+        "mean": 0.5667824745178223,
+        "std": 0.01586336063123618
+      }
+    },
+    {
+      "length": 32,
+      "n_seeds": 5,
+      "benefit": {
+        "baseline": {
+          "mean": 10.849783325195313,
+          "std": 0.08165418918438407
+        },
+        "induction_ablated": {
+          "mean": 0.18196069002151488,
+          "std": 0.061186369263630074
+        },
+        "control_ablated": {
+          "mean": 11.15443458557129,
+          "std": 0.36652468055139015
+        }
+      },
+      "top1_head_counts": {
+        "L1H6": 5
+      },
+      "top1_consistency": 1.0,
+      "top1_induction_score": {
+        "mean": 0.6393944382667541,
+        "std": 0.009613561347330876
+      }
+    },
+    {
+      "length": 64,
+      "n_seeds": 5,
+      "benefit": {
+        "baseline": {
+          "mean": 10.412021255493164,
+          "std": 0.16456422822142358
+        },
+        "induction_ablated": {
+          "mean": 0.07894270420074463,
+          "std": 0.03666552943131333
+        },
+        "control_ablated": {
+          "mean": 10.711455535888671,
+          "std": 0.3660014360375529
+        }
+      },
+      "top1_head_counts": {
+        "L1H6": 5
+      },
+      "top1_consistency": 1.0,
+      "top1_induction_score": {
+        "mean": 0.6693759202957154,
+        "std": 0.01005146963182759
+      }
+    }
+  ],
+  "torch_version": "2.14.0"
+}
